@@ -11,6 +11,10 @@ This README describes the architecture of the repository (`~/CMIP`), the data
 stored in `/glade/work/tsalin/CMIP` and `/glade/derecho/scratch/tsalin/CMIP`,
 and gives a summary of every notebook in the `notebooks/` folder.
 
+For the exact list of which (setup, sample size, architecture, alignment
+method, variable, hyperparameters, split) combinations have already been
+trained and are available on `work`, see **[AVAILABLE_DATA.md](AVAILABLE_DATA.md)**.
+
 ---
 
 ## 1. Pipeline overview
@@ -112,7 +116,7 @@ artifacts; the large datasets live on the shared GLADE filesystems:
 | Subfolder | Contents | Produced by |
 |---|---|---|
 | `executed_notebooks/` | Executed copies (`*.executed.ipynb`) of the training/mask notebooks, one per run (often suffixed `_run1`, `_runtas`, `_runMLP`...) — a reproducible trace of each run with its outputs | `jobs/run_*.py` (via `nbclient`) |
-| `model_evaluation/<Setup>/` | Model checkpoints (`.pt`) and per-run metric tables (`quality_df*.pkl`, `run_manifest.json`) for each setup: `CERA/` (the largest, 246 files — hyperparameter grid explored), `CERA_full_latent/`, `CERA_seasonal/`, `Baseline_CERA_noalign/`, `Baseline_ClimaX/`, `Baseline_physical/`, `Baseline_simple/`, `exp3/`, `exp4/` | notebooks under `notebooks/trainings/variable/` and `mask/`, via `jobs/run_*.py` |
+| `model_evaluation/<Setup>/` | Model checkpoints (`.pt`) and per-run metric tables (`quality_df*.pkl`, `run_manifest.json`) for each setup: `CERA/` (the largest, 246 files — hyperparameter grid explored), `CERA_full_latent/`, `CERA_seasonal/`, `Baseline_CERA_noalign/`, `Baseline_ClimaX/`, `Baseline_physical/`, `Baseline_simple/`, `exp3/`, `exp4/`. **See [AVAILABLE_DATA.md](AVAILABLE_DATA.md) for the exact list of which (setup, sample size, architecture, alignment method, variable, hyperparameters, split) runs exist here.** | notebooks under `notebooks/trainings/variable/` and `mask/`, via `jobs/run_*.py` |
 | `latent_representations/latent_representations_exp_{3,4,5}/` | Latent representations computed on the test set (`*_latent_representations_df.pkl`) for each combination (architecture, variable, hyperparameters) + `*_run_manifest.json` — this is the data consumed by the `CMIP_analysis_latent*.ipynb` notebooks | same as above |
 | `plots/plots_exp_{3,4,5}/` | PNG figures automatically exported from the training notebooks (loss curves, reconstructions, etc.) | same as above |
 
