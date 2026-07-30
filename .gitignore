@@ -1,0 +1,19 @@
+# Large / regenerable data — stays on GLADE work/scratch, not in git
+logs/
+model_evaluation/
+old notebooks/
+reportGraph/csv/rmse_global_by_scenario_pr.csv
+reportGraph/csv/rmse_global_by_scenario_pr_old_hyperparam.csv
+
+# Generic safety net for future large binary artifacts
+*.pkl
+*.pt
+*.ckpt
+*.npy
+*.zarr/
+
+# Jupyter / Python housekeeping
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.DS_Store

@@ -1,0 +1,17 @@
+setup,scenario,reference_scenario,rmse_ratio
+CERA,ssp126,historical,1.2065156424724808
+CERA,ssp245,historical,1.385954069655307
+CERA,ssp370,historical,2.2046520386847894
+CERA,ssp585,historical,2.7829120532765277
+CERA full latent,ssp126,historical,1.3293906585572854
+CERA full latent,ssp245,historical,1.0480589598548102
+CERA full latent,ssp370,historical,2.0406532869791563
+CERA full latent,ssp585,historical,1.296358208163997
+CERA swdn,ssp126,historical,1.2588148121689364
+CERA swdn,ssp245,historical,1.0186071829412109
+CERA swdn,ssp370,historical,2.6277289103944037
+CERA swdn,ssp585,historical,1.402478334304932
+CERA adversarial,ssp126,historical,1.2511809194111698
+CERA adversarial,ssp245,historical,1.2038560022432103
+CERA adversarial,ssp370,historical,2.505821363881487
+CERA adversarial,ssp585,historical,1.407419275458768

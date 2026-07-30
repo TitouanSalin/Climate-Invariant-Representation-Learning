@@ -1,0 +1,26 @@
+setup,scenario,rmse_extreme
+CERA,historical,20.256974809126067
+CERA,ssp126,16.856617369672072
+CERA,ssp245,21.723195356238783
+CERA,ssp370,44.827403857965464
+CERA,ssp585,16.78159889209377
+Baseline simple,historical,47.4799029665253
+Baseline simple,ssp126,21.699172905582024
+Baseline simple,ssp245,40.42721189899181
+Baseline simple,ssp370,218.9921264694159
+Baseline simple,ssp585,31.923513170444057
+Baseline physical,historical,41.63279478456646
+Baseline physical,ssp126,21.577758610015024
+Baseline physical,ssp245,30.883767704382244
+Baseline physical,ssp370,90.54543503943249
+Baseline physical,ssp585,26.195551030667964
+Baseline ClimaX,historical,16.728786747127433
+Baseline ClimaX,ssp126,18.337755311996457
+Baseline ClimaX,ssp245,18.522123191850138
+Baseline ClimaX,ssp370,19.587772434190754
+Baseline ClimaX,ssp585,20.735838807901455
+Baseline no align,historical,19.412354600980684
+Baseline no align,ssp126,17.624477599634282
+Baseline no align,ssp245,17.602407369152846
+Baseline no align,ssp370,37.650271249666346
+Baseline no align,ssp585,19.758434540110652

@@ -1,0 +1,25 @@
+#!/bin/bash
+#PBS -N cmip_pipeline
+#PBS -A UCLB0065
+#PBS -q main
+#PBS -l select=1:ncpus=20:mem=80GB
+#PBS -l walltime=06:00:00
+#PBS -o /glade/u/home/tsalin/CMIP/logs/pipeline.out
+#PBS -e /glade/u/home/tsalin/CMIP/logs/pipeline.err
+
+mkdir -p /glade/u/home/tsalin/CMIP/logs
+
+# Allow overriding the pipeline base path via environment variables, e.g. with
+# `qsub -v BASE_PATH=...`.
+BASE_PATH=${BASE_PATH:-/glade/derecho/scratch/tsalin/CMIP}
+
+# Initialize conda in PBS shell
+__conda_setup="$('/glade/u/apps/jupyterhub/jh-23.11/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
+if [ $? -eq 0 ]; then eval "$__conda_setup"; fi
+unset __conda_setup
+module load conda
+conda activate cmip
+
+echo "Running pipelineNG.py with BASE_PATH=${BASE_PATH}" >&2
+python -u /glade/u/home/tsalin/CMIP/jobs/pipelineNG.py \
+    --base-path "${BASE_PATH}"

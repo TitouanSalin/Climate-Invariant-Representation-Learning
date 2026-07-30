@@ -1,0 +1,13 @@
+setup,scenario,r2_global_mean
+CERA,historical,0.968807309920354
+CERA,ssp245,0.9683661327765052
+CERA,ssp370,0.9660006752999385
+CERA,ssp585,0.9623502143588395
+Baseline no align,historical,0.9694308895186913
+Baseline no align,ssp245,0.9688717895794959
+Baseline no align,ssp370,0.9650167012903286
+Baseline no align,ssp585,0.9580409846681945
+Baseline simple,historical,0.9894482587561296
+Baseline simple,ssp245,0.9891748212670147
+Baseline simple,ssp370,0.9875640295016971
+Baseline simple,ssp585,0.9846682955522934

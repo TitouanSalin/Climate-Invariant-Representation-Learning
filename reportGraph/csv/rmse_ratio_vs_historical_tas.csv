@@ -1,0 +1,21 @@
+setup,scenario,reference_scenario,rmse_ratio
+CERA,ssp126,historical,1.0569174019118606
+CERA,ssp245,historical,1.0861007917087546
+CERA,ssp370,historical,1.1715545816514714
+CERA,ssp585,historical,1.2410475342860388
+Baseline simple,ssp126,historical,1.0480325610205634
+Baseline simple,ssp245,historical,1.0765292952718168
+Baseline simple,ssp370,historical,1.155966429883312
+Baseline simple,ssp585,historical,1.214975191741418
+Baseline physical,ssp126,historical,1.068389338995826
+Baseline physical,ssp245,historical,1.097239844772383
+Baseline physical,ssp370,historical,1.214814649019478
+Baseline physical,ssp585,historical,1.347117832539926
+Baseline ClimaX,ssp126,historical,1.138681789186193
+Baseline ClimaX,ssp245,historical,1.2178689224021297
+Baseline ClimaX,ssp370,historical,1.5016353967413263
+Baseline ClimaX,ssp585,historical,1.9698175892853953
+Baseline no align,ssp126,historical,1.0374304421543188
+Baseline no align,ssp245,historical,1.0660474611922754
+Baseline no align,ssp370,historical,1.1493060343782315
+Baseline no align,ssp585,historical,1.227661719215528

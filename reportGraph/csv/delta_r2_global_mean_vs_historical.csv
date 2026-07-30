@@ -1,0 +1,10 @@
+setup,scenario,reference_scenario,delta_r2_global_mean
+CERA,ssp245,historical,-0.00044117714384883655
+CERA,ssp370,historical,-0.002806634620415527
+CERA,ssp585,historical,-0.006457095561514525
+Baseline no align,ssp245,historical,-0.00055909993919534
+Baseline no align,ssp370,historical,-0.004414188228362703
+Baseline no align,ssp585,historical,-0.011389904850496735
+Baseline simple,ssp245,historical,-0.00027343748911490273
+Baseline simple,ssp370,historical,-0.0018842292544325456
+Baseline simple,ssp585,historical,-0.004779963203836224

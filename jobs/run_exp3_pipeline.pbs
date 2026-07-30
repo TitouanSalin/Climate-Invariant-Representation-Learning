@@ -1,0 +1,61 @@
+#!/bin/bash
+#PBS -N cmip_exp3_pipeline
+#PBS -A UCLB0066
+#PBS -q main
+#PBS -l select=1:ncpus=20:mem=200GB:ngpus=1
+#PBS -l walltime=02:00:00
+#PBS -o /glade/u/home/tsalin/CMIP/logs/
+#PBS -e /glade/u/home/tsalin/CMIP/logs/
+
+set -euo pipefail
+
+# Identifiant de run (choisi via `qsub -v RUN_TAG=...`), pour nommer le notebook
+# exécuté sans collision entre runs parallèles. Reste identique sur toute la
+# chaîne de resoumission (voir propagation ci-dessous).
+RUN_TAG="${RUN_TAG:-default}"
+
+# Pré-soumettre le job suivant avant de commencer : il ne démarrera que si ce
+# job se termine en erreur (walltime, OOM, crash), pas si exit 0.
+# On retransmet RUN_TAG et les hyperparamètres reçus pour que le job successeur
+# reprenne avec exactement les mêmes valeurs, même si le notebook partagé a été
+# modifié entre-temps pour un autre run.
+V_ARGS="RUN_TAG=$RUN_TAG"
+for v in NUM_SAMPLE AUTOENCODER_TYPE AE_SETUP_NAME VARIABLE VAL_FRACTION TEST_FRACTION; do
+  [[ -n "${!v:-}" ]] && V_ARGS="$V_ARGS,$v=${!v}"
+done
+NEXT_JOB=$(qsub -W depend=afternotok:"$PBS_JOBID" -v "$V_ARGS" \
+  "$PBS_O_WORKDIR/run_exp3_pipeline.pbs")
+echo "[PBS] Job successeur pré-soumis : $NEXT_JOB (démarre uniquement si ce job échoue)"
+
+PROJECT_DIR="/glade/u/home/tsalin/CMIP"
+WORK_DIR="/glade/work/tsalin/CMIP"
+mkdir -p "$PROJECT_DIR/logs"
+mkdir -p "$PROJECT_DIR/model_evaluation/exp3"
+cd "$PROJECT_DIR/jobs"
+
+# Initialize conda in PBS shell
+__conda_setup="$('/glade/u/apps/jupyterhub/jh-23.11/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
+if [ $? -eq 0 ]; then eval "$__conda_setup"; fi
+unset __conda_setup
+module load conda
+conda activate cmip
+
+python -u run_exp3_pipeline.py \
+  --project-dir "$PROJECT_DIR" \
+  --notebook notebooks/trainings/variable/CMIP_variable_exp3.ipynb \
+  --plots-dir "$WORK_DIR/plots/plots_exp_3" \
+  --latents-dir "$WORK_DIR/latent_representations/latent_representations_exp_3" \
+  --evaluation-dir "$WORK_DIR/model_evaluation/exp3" \
+  --executed-notebook "$WORK_DIR/executed_notebooks/CMIP_variable_exp3_${RUN_TAG}.executed.ipynb" \
+  --run-tag "$RUN_TAG" \
+  ${NUM_SAMPLE:+--num-sample "$NUM_SAMPLE"} \
+  ${AUTOENCODER_TYPE:+--autoencoder-type "$AUTOENCODER_TYPE"} \
+  ${AE_SETUP_NAME:+--ae-setup-name "$AE_SETUP_NAME"} \
+  ${VARIABLE:+--variable "$VARIABLE"} \
+  ${VAL_FRACTION:+--val-fraction "$VAL_FRACTION"} \
+  ${TEST_FRACTION:+--test-fraction "$TEST_FRACTION"} \
+  --timeout 0
+
+# Si Python s'est terminé normalement (exit 0), annuler le job successeur
+# car tout est fini — le checkpoint a été supprimé par le notebook.
+qdel "$NEXT_JOB" 2>/dev/null && echo "[PBS] Job successeur annulé : entraînement et évaluation terminés." || true

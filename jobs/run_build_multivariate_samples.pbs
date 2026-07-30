@@ -1,0 +1,31 @@
+#!/bin/bash
+#PBS -N cmip_multivar_samples
+#PBS -A UCLB0065
+#PBS -q main
+#PBS -l select=1:ncpus=10:mem=40GB
+#PBS -l walltime=04:00:00
+#PBS -o /glade/u/home/tsalin/CMIP/logs/multivar_samples.out
+#PBS -e /glade/u/home/tsalin/CMIP/logs/multivar_samples.err
+
+set -euo pipefail
+
+PROJECT_DIR="/glade/u/home/tsalin/CMIP"
+mkdir -p "$PROJECT_DIR/logs"
+cd "$PROJECT_DIR/jobs"
+
+# Initialize conda in PBS shell
+__conda_setup="$('/glade/u/apps/jupyterhub/jh-23.11/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
+if [ $? -eq 0 ]; then eval "$__conda_setup"; fi
+unset __conda_setup
+module load conda
+conda activate cmip
+
+python -u build_multivariate_samples_optimized.py \
+  --base-path /glade/derecho/scratch/tsalin/CMIP \
+  --output-dir /glade/derecho/scratch/tsalin/CMIP/derived/multivariate_samples_optimized_NGS_v10000 \
+  --variables tas ta850 ta500 huss hus850 hus500 ua850 va850 ua500 va500 wap500 zg500 pr psl rsds sfcWind \
+  --max-abs-lat 30 \
+  --patch-size-km 1000 \
+  --time-stride 1 \
+  --max-samples-per-climate 10000 \
+  --random-seed 42
