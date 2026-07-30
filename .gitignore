@@ -12,6 +12,9 @@ reportGraph/csv/rmse_global_by_scenario_pr_old_hyperparam.csv
 *.npy
 *.zarr/
 
+# Exception: small final aggregated tables meant to ship with the report
+!reportGraph/agregate_display/*.pkl
+
 # Jupyter / Python housekeeping
 .ipynb_checkpoints/
 __pycache__/
