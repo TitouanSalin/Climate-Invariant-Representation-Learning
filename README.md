@@ -136,11 +136,11 @@ A central assumption behind CERA is that distribution alignment should remove cl
 
 I therefore quantify alignment through Historical-to-SSP5-8.5 latent SWD and climate invariance through a classifier trained to recover the climate scenario from latent representations. With five balanced climate scenarios, random classification accuracy is **20%**.
 
-![Climate separability versus latent alignment](figures/classifier_accuracy_vs_alignment_loss_thresholds_png)
+![Climate separability versus latent alignment](figures/classifier_accuracy_vs_alignment_loss_thresholds.png)
 
 *Figure 4 — Climate-classification accuracy versus Historical–SSP5-8.5 latent alignment distance across model configurations. Lower values on both axes correspond respectively to stronger alignment and stronger climate invariance.*
 
-Across **186 configurations**, latent alignment and climate separability exhibit a strong monotonic relationship (**Spearman \(\rho=0.872\), \(p<0.001\)**). More importantly, the relationship is asymmetric: using the exploratory thresholds shown in the figure, **100% of poorly aligned representations (SWD > 0.03) are also climate-separable (classifier accuracy > 0.35)**.
+Across **186 configurations**, latent alignment and climate separability exhibit a strong monotonic relationship (**Spearman ($rho=0.872$), ($p<0.001$)**). More importantly, the relationship is asymmetric: using the exploratory thresholds shown in the figure, **100% of poorly aligned representations (SWD > 0.03) are also climate-separable (classifier accuracy > 0.35)**.
 
 Conversely, strong alignment does **not** guarantee climate invariance. The empty region corresponding to *poor alignment + strong invariance*, together with the populated *strong alignment + poor invariance* region, suggests that alignment behaves as a **necessary but non-sufficient condition for climate invariance within the configurations explored here**.
 
@@ -148,28 +148,20 @@ Conversely, strong alignment does **not** guarantee climate invariance. The empt
 
 The same 186 configurations allow representation properties to be compared with precipitation prediction under SSP5-8.5.
 
-| Relationship | Spearman \(\rho\) | Conditional result |
+| Relationship | Spearman ($rho$) | Conditional result |
 |---|---:|---|
 | Alignment ↔ climate separability | **0.872** | **100%** of poorly aligned representations are climate-separable |
-| Alignment ↔ SSP5-8.5 \(R^2\) | **−0.421** | **96.6%** of high-\(R^2\) models are well aligned |
-| Climate separability ↔ SSP5-8.5 \(R^2\) | **−0.489** | **94.3%** of high-\(R^2\) models are climate-invariant |
-| Physical-invariance ratio ↔ SSP5-8.5 \(R^2\) | 0.114 (n.s.) | **95.5%** of high-\(R^2\) models satisfy the physical-invariance criterion |
+| Alignment ↔ SSP5-8.5 $R^2$ | **−0.421** | **96.6%** of high-$R^2$ models are well aligned |
+| Climate separability ↔ SSP5-8.5 $R^2$ | **−0.489** | **94.3%** of high-$R^2$ models are climate-invariant |
+| Physical-invariance ratio ↔ SSP5-8.5 $R^2$ | 0.114 (n.s.) | **95.5%** of high-$R^2$ models satisfy the physical-invariance criterion |
 
-All analyses use \(N=186\) configurations. The first three rank correlations are statistically significant (\(p<0.001\)); the physical-invariance ratio is not monotonically correlated with \(R^2\) (\(p=0.120\)).
+All analyses use $N=186$ configurations. The first three rank correlations are statistically significant ($p<0.001$); the physical-invariance ratio is not monotonically correlated with $R^2$ ($p=0.120$).
 
-The conditional statistics reveal a stronger result than correlation alone. **94.3% of models with SSP5-8.5 \(R^2>0.75\) are climate-invariant** according to the selected classifier threshold, yet only **57.6% of climate-invariant models** reach this performance level. Similarly, **96.6% of high-performing models are well aligned**, while good alignment alone yields high \(R^2\) in only **54.5%** of configurations.
+The conditional statistics reveal a stronger result than correlation alone. **94.3% of models with SSP5-8.5 $R^2>0.75$ are climate-invariant** according to the selected classifier threshold, yet only **57.6% of climate-invariant models** reach this performance level. Similarly, **96.6% of high-performing models are well aligned**, while good alignment alone yields high $R^2$ in only **54.5%** of configurations.
 
 Within the explored model family, the empirical structure is therefore better described as a hierarchy of **necessary-but-not-sufficient properties** than as a simple monotonic chain:
 
-\[
-\boxed{
-\text{High OOD performance}
-\;\Longrightarrow\;
-\text{Climate invariance}
-\;\Longrightarrow\;
-\text{Latent alignment}
-}
-\]
+$\boxed{\text{High OOD performance}\;\Longrightarrow\;\text{Climate invariance}\;\Longrightarrow\;\text{Latent alignment}}$
 
 This does **not** establish universal or causal necessity. Rather, high OOD performance was observed almost exclusively in the aligned and climate-invariant region of the representation space, while alignment or invariance alone remained insufficient to guarantee strong prediction.
 
@@ -191,7 +183,7 @@ Climate invariance is useful only if removing climate-specific information does 
 
 Cross-climate nearest-neighbor analyses show that latent distances retain information about physically meaningful atmospheric similarity. Among predefined candidate invariants, the strongest relationships involve quantities such as **relative humidity, wind shear, and wind magnitude**, with correlations reaching approximately **0.3–0.4**. SWDN generally exhibits the strongest relationships across the tested candidate invariants.
 
-The larger 186-configuration analysis provides complementary evidence: **95.5% of high-OOD-performance models satisfy the selected physical-invariance criterion**, although the physical-invariance ratio is not itself monotonically correlated with \(R^2\) (\(\rho=0.114,\ p=0.120\)). Physical organization therefore appears characteristic of most high-performing representations without being sufficient to predict performance.
+The larger 186-configuration analysis provides complementary evidence: **95.5% of high-OOD-performance models satisfy the selected physical-invariance criterion**, although the physical-invariance ratio is not itself monotonically correlated with $R^2$ ($rho=0.114$,$p=0.120$). Physical organization therefore appears characteristic of most high-performing representations without being sufficient to predict performance.
 
 I further explored whether explicit physical relationships could be discovered directly from invariant latent directions using **generalized eigenanalysis, LASSO attribution, and symbolic regression**. Humidity, temperature, pressure, vertical motion, and circulation variables repeatedly emerge as important contributors. However, the recovered expressions could not be robustly identified with established physical invariants or conservation laws.
 
@@ -231,7 +223,7 @@ Future work could combine cross-climate representation learning with **dimension
 
 This study focuses primarily on **one Earth System Model (CESM2)**. Relationships that appear invariant across its climate scenarios may therefore remain model-specific. Testing across multiple CMIP6 Earth System Models would provide a stronger test of climate invariance across both forcing scenarios and model structure.
 
-The conditional thresholds used in the representation analysis — SWD \(<0.03\), climate-classifier accuracy \(<0.35\), physical-invariance ratio \(>2\), and SSP5-8.5 \(R^2>0.75\) — were selected from the observed empirical distributions. They should therefore be interpreted as **exploratory diagnostic thresholds rather than universal physical boundaries**.
+The conditional thresholds used in the representation analysis — SWD $<0.03$, climate-classifier accuracy $<0.35$, physical-invariance ratio $>2$, and SSP5-8.5 $R^2>0.75$ — were selected from the observed empirical distributions. They should therefore be interpreted as **exploratory diagnostic thresholds rather than universal physical boundaries**.
 
 Finally, the representation analyses establish statistical associations rather than causal mechanisms, and physical-invariant discovery remains exploratory.
 
