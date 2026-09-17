@@ -54,15 +54,9 @@ The progressively warmer SSP scenarios provide a controlled setting for evaluati
 
 CERA combines three objectives:
 
-\[
-\mathcal{L}
-=
-(1-\lambda_{\mathrm{rec}}-\lambda_{\mathrm{align}})\mathcal{L}_{\mathrm{pred}}
-+
-\lambda_{\mathrm{rec}}\mathcal{L}_{\mathrm{rec}}
-+
-\lambda_{\mathrm{align}}\mathcal{L}_{\mathrm{align}}.
-\]
+**Objective:** $L = (1 - \lambda_{rec} - \lambda_{align})L_{pred} + \lambda_{rec}L_{rec} + \lambda_{align}L_{align}$
+
+where $L_{pred}$ is the supervised prediction loss, $L_{rec}$ the reconstruction loss, and $L_{align}$ the cross-climate representation alignment loss.
 
 A shared convolutional **encoder** maps multivariate climate patches into a latent representation. A **decoder** reconstructs the original climate state, while a **predictor** estimates downstream climate variables from an aligned subset of the latent representation.
 
