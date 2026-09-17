@@ -60,17 +60,9 @@ where $L_{pred}$ is the supervised prediction loss, $L_{rec}$ the reconstruction
 
 A shared convolutional **encoder** maps multivariate climate patches into a latent representation. A **decoder** reconstructs the original climate state, while a **predictor** estimates downstream climate variables from an aligned subset of the latent representation.
 
-```text
-Historical climate ──┐
-                     ├──► Shared CNN Encoder ──► Aligned latent ──► Predictor
-Future climate ──────┘            │                    │
-                                  │                    └── Cross-climate alignment
-                                  ▼
-                              Full latent
-                                  │
-                                  ▼
-                               Decoder
-```
+![CERA Architecture from Liu & O'Gorman](figures/ceraArchitecture.png)
+
+*Figure 0 — Overview of the Climate-Equivariant Representation Alignment (CERA) framework. Latent representations from a control and a warm climate are aligned through an Earth Mover’s Distance regularization, while prediction is performed using the aligned component of the latent space.*
 
 Prediction is supervised using **Historical labels only**. Future-climate samples can contribute to reconstruction and latent alignment without providing downstream prediction labels, allowing OOD predictive performance to be evaluated independently.
 
