@@ -120,7 +120,7 @@ SWDN removes sensitivity of the alignment objective to global latent rescaling. 
 
 *Figure 2 — Global precipitation prediction performance across Historical and future SSP scenarios.*
 
-**CERA-SWDN achieves the highest precipitation \(R^2\) across all evaluated scenarios.** From Historical to SSP5-8.5, its \(R^2\) decreases from approximately **0.91 to 0.87**, compared with **0.58 to 0.37 for ClimaX-Boosted**. The corresponding decrease, 0.04 versus 0.21, is approximately **81% smaller** for CERA-SWDN in this evaluation.
+**CERA-SWDN achieves the highest precipitation ($R^2$) across all evaluated scenarios.** From Historical to SSP5-8.5, its ($R^2$) decreases from approximately **0.91 to 0.87**, compared with **0.58 to 0.37 for ClimaX-Boosted**. The corresponding decrease, 0.04 versus 0.21, is approximately **81% smaller** for CERA-SWDN in this evaluation.
 
 The improvement also extends to the tail of the precipitation distribution:
 
@@ -136,7 +136,7 @@ A central assumption behind CERA is that distribution alignment should remove cl
 
 I therefore quantify alignment through Historical-to-SSP5-8.5 latent SWD and climate invariance through a classifier trained to recover the climate scenario from latent representations. With five balanced climate scenarios, random classification accuracy is **20%**.
 
-![Climate separability versus latent alignment](figures/classifier_accuracy_vs_alignement_loss_thresholds_png)
+![Climate separability versus latent alignment](figures/classifier_accuracy_vs_alignment_loss_thresholds_png)
 
 *Figure 4 — Climate-classification accuracy versus Historical–SSP5-8.5 latent alignment distance across model configurations. Lower values on both axes correspond respectively to stronger alignment and stronger climate invariance.*
 
