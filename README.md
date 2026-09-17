@@ -254,7 +254,7 @@ Large CMIP6 datasets, model checkpoints, and intermediate outputs are excluded f
 
 ## Research Status
 
-This research was conducted at **Columbia University's Gentine Lab** from **April to August 2026**, under the supervision of **Sophie Abramian**.
+This research was conducted at **Columbia University's Gentine Lab** from **April to August 2026**, under the supervision of **Sophie Abramian** and **Pierre Gentine**.
 
 The [interim research report](interim-report/Titouan_Salin_Columbia_Interim_Research_Report.pdf) documents the scientific motivation, methodology, and preliminary experiments. **It predates several of the final analyses and results summarized in this README.**
 
