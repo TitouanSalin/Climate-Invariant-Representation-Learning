@@ -151,9 +151,9 @@ The same 186 configurations allow representation properties to be compared with 
 | Relationship | Spearman ($rho$) | Conditional result |
 |---|---:|---|
 | Alignment ↔ climate separability | **0.872** | **100%** of poorly aligned representations are climate-separable |
-| Alignment ↔ SSP5-8.5 $R^2$ | **−0.421** | **96.6%** of high-$R^2$ models are well aligned |
-| Climate separability ↔ SSP5-8.5 $R^2$ | **−0.489** | **94.3%** of high-$R^2$ models are climate-invariant |
-| Physical-invariance ratio ↔ SSP5-8.5 $R^2$ | 0.114 (n.s.) | **95.5%** of high-$R^2$ models satisfy the physical-invariance criterion |
+| Alignment ↔ SSP5-8.5 $R^2$ | **−0.421** | **96.6%** of high- $R^2$ models are well aligned |
+| Climate separability ↔ SSP5-8.5 $R^2$ | **−0.489** | **94.3%** of high- $R^2$ models are climate-invariant |
+| Physical-invariance ratio ↔ SSP5-8.5 $R^2$ | 0.114 (n.s.) | **95.5%** of high- $R^2$ models satisfy the physical-invariance criterion |
 
 All analyses use $N=186$ configurations. The first three rank correlations are statistically significant ($p<0.001$); the physical-invariance ratio is not monotonically correlated with $R^2$ ($p=0.120$).
 
