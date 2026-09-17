@@ -1,4 +1,4 @@
-# Available Trained Configurations — `/glade/work/tsalin/CMIP`
+# Available Trained Configurations
 
 This file is the authoritative inventory of which **(setup, sample size,
 architecture, alignment method, variable, hyperparameters, split)**
